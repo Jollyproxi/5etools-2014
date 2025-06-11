@@ -5,7 +5,7 @@
 				"json": "BillCipher",
 				"abbreviation": "Bill",
 				"full": "Bill Cipher",
-				"version": "3.7",
+				"version": "4.0",
 				"url": "https://www.dndbeyond.com/monsters/5477349-bill-cipher",
 				"authors": [
 					"u/Space_GoblinDM",
@@ -376,7 +376,8 @@
 					["6", "{@creature Hectorgon, The Fallen Sheriff|billcipher}"],
 					["7", "{@creature Amorphous Shape|billcipher}"],
 					["8", "{@creature Pyronica|billcipher}"],
-					["9", "{@creature Paci-Fire|billcipher}"]
+					["9", "{@creature Paci-Fire|billcipher}"],
+					["10", "{@creature Lava Lamp|billcipher}"]
 				]
 		}       
 	],
@@ -3088,7 +3089,7 @@
 					{
 						"name": "Supernova Heart",
 						"entries": [
-							"If Bill Cipher uses his Sacrifice action; Pyronica grants {@creature Bill Cipher|billcipher} her soul. Bill’s body radiates fire at the start of each turn, dealing 28({@damage 5d10}) fire damage in a 30-ft. radius for 1 minute."
+							"If {@creature Bill Cipher|billcipher} uses his Sacrifice action; Pyronica grants {@creature Bill Cipher|billcipher} her soul. Bill’s body radiates fire at the start of each turn, dealing 28({@damage 5d10}) fire damage in a 30-ft. radius for 1 minute."
 						]
 					}
 				],
@@ -3467,6 +3468,201 @@
 					"dexterity",
 					"strength"
 				]
+		},
+		{
+			"name": "Lava Lamp",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "ooze",
+				"tags": [
+					"henchmaniac"
+				]
+			},
+			"source": "BillCipher",
+			"alignment": [
+				"C"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "16d10 + 112",
+				"average": 200
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 22,
+			"dex": 10,
+			"con": 24,
+			"int": 6,
+			"wis": 10,
+			"cha": 8,
+			"passive": 10,
+			"cr": "15",
+			"shortName": true,
+			"languages": [
+				"Abyssal",
+				"Common but can't speak"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"CS"
+			],
+			"vulnerable": [
+				"force"
+			],
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing"
+					],
+					"preNote": "Nonmagical"
+				}
+			],
+			"immune": [
+				"acid",
+				"cold",
+				"poison"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"poisoned",
+				"prone"
+			],
+			"trait": [
+				{
+					"name": "Amorphous",
+					"entries": [
+						"Lava Lamp can move through a space as narrow as 1 inch wide without squeezing."
+					]
+				},
+				{
+					"name": "Heated Body",
+					"entries": [
+						"A creature that touches Lava Lamp or hits it with a melee attack while within 5 feet takes 10 ({@damage 3d6}) fire damage."
+					]
+				},
+				{
+					"name": "Lava Lamp Glow",
+					"entries": [
+						"Lava Lamp sheds bright light in a 30-foot radius and dim light for an additional 30 feet."
+					]
+				},
+				{
+					"name": "Chaotic essence.",
+					"entries": [
+						"As long as {@creature Bill Cipher|billcipher} isn't destoyed in the Nightmere realm this creature reforms with full hp at dawn."
+					]
+				},
+				{
+					"name": "Combo Attacker.",
+					"entries": [
+						"When attacking a creature, that has been attacked by another {@table Henchmaniacs|billcipher} his attacks gain the following benefits",
+						{
+							"type": "list",
+							"items": [
+								{
+									"type": "item",
+									"entries": [
+										"The damage dealt heals Lava Lamp"
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Molten Core",
+					"entries": [
+						"When reduced to 0 hit points, Lava Lamp explodes. Each creature within 20 feet must make a {@dc 20} Dexterity saving throw, taking 21 ({@damage 6d6}) fire damage on a failed save, or half as much on a successful one."
+					]
+				},
+				{
+					"name": "Hot bod.",
+					"entries": [
+						"If {@creature Bill Cipher|billcipher} uses his Sacrifice action on Lava Lamp.",
+						"Bill Gains Superheated body thus, when acreature that touches Bill or hits it with a melee attack while within 5 feet takes 10 ({@damage 4d6}) fire damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Amorphous",
+				"Rampage"
+			],
+			"action": [
+				{
+					"name": "Multiattack.",
+					"entries": [
+						"Lava Lamp makes three slam attacks."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}19 ({@damage 3d8 + 6}) bludgeoning damage + 10 ({@damage 3d6}) fire damage."
+					]
+				},
+				{
+					"name": "Bill's Devastation",
+					"entries": [
+						"Bill creates a chaotic rift at a point within 120 feet, which Lava Lamp superheats into a 40-foot-radius sphere of molten energy. Each creature in the area must make a {@dc 20} Dexterity saving throw, taking 55 ({@damage 10d10}) fire damage and 27 ({@damage 5d10}) force damage on a failed save, or half as much on a successful one."
+					]
+				},
+				{
+					"name": "Erupting Lava {@recharge 5}",
+					"entries": [
+						"Lava Lamp explodes in a 20-foot-radius sphere. Each creature in the area must make a {@dc 20} Dexterity saving throw, taking 35 ({@damage 10d6}) fire damage on a failed save, or half as much on a successful one. The area becomes difficult terrain coated in lava for 1 minute. A creature entering or starting its turn there takes 10 ({@damage 3d6}) fire damage."
+					]
+				}
+			],
+			"miscTags": [
+				"MW",
+				"RCH",
+				"AOE"
+			],
+			"fluff": {
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://static.wikia.nocookie.net/gravityfalls/images/6/65/Lava-Lamp_Shaped_Creature_appearance.png"
+						}
+					}
+				]
+			},
+			"senses": [
+				"blindsight 120 ft."
+			],
+			"senseTags": [
+				"B"
+			],
+			"tokenHref": {
+				"type": "external",
+				"url": "https://static.wikia.nocookie.net/gravityfalls/images/6/65/Lava-Lamp_Shaped_Creature_appearance.png"
+			},
+			"damageTags": [
+				"B",
+				"F",
+				"O"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			]
 		}
 	]
 }
