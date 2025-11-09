@@ -867,7 +867,7 @@
 				"path": "covers/OGA.webp"
 			},
 			"published": "2017-10-11",
-			"author": "Extra Life",
+			"author": "Christopher Lindsay",
 			"contents": [
 				{
 					"name": "One Grung Above"
@@ -1471,6 +1471,37 @@
 				},
 				{
 					"name": "Credits"
+				}
+			]
+		},
+		{
+			"name": "Adventure with Muk",
+			"id": "AWM",
+			"source": "AWM",
+			"group": "supplement-alt",
+			"cover": {
+				"type": "internal",
+				"path": "covers/AWM.webp"
+			},
+			"published": "2019-11-12",
+			"author": "Emi Tanji",
+			"contents": [
+				{
+					"name": "Activity Pages"
+				},
+				{
+					"name": "Answers"
+				},
+				{
+					"name": "Muk and Friends",
+					"headers": [
+						"How to Play!",
+						"The Heroes",
+						"Adventure Ideas",
+						"Monsters",
+						"Dankwood Goblins",
+						"Character Sheets"
+					]
 				}
 			]
 		},
@@ -2661,6 +2692,36 @@
 				},
 				{
 					"name": "Credits"
+				}
+			]
+		},
+		{
+			"name": "Muk's Guide to Everything He Learned From Tasha",
+			"id": "MGELFT",
+			"source": "MGELFT",
+			"group": "supplement-alt",
+			"cover": {
+				"type": "internal",
+				"path": "covers/MGELFT.webp"
+			},
+			"published": "2020-12-01",
+			"author": "Emi Tanji",
+			"contents": [
+				{
+					"name": "Activity Pages"
+				},
+				{
+					"name": "Answers"
+				},
+				{
+					"name": "Adventure and Sidekick Ideas!",
+					"headers": [
+						"Adventure Ideas",
+						"More Adventure Hooks!",
+						"Monsters",
+						"Sidekicks",
+						"Character Sheet"
+					]
 				}
 			]
 		},
@@ -4244,13 +4305,31 @@
 			]
 		},
 		{
+			"name": "Dungeon Master's Screen: Spelljammer",
+			"id": "ScreenSpelljammer",
+			"source": "ScreenSpelljammer",
+			"group": "screen",
+			"cover": {
+				"type": "internal",
+				"path": "covers/ScreenSpelljammer.webp"
+			},
+			"published": "2022-08-16",
+			"author": "Wizards RPG Team",
+			"contents": [
+				{
+					"name": "Screen"
+				}
+			]
+		},
+		{
 			"name": "Astral Adventurer's Guide",
 			"alias": [
 				"Spelljammer: Astral Adventurer's Guide"
 			],
 			"id": "AAG",
 			"source": "AAG",
-			"group": "supplement",
+			"parentSource": "SAiS",
+			"group": "setting",
 			"cover": {
 				"type": "internal",
 				"path": "covers/AAG.webp"
@@ -4329,7 +4408,8 @@
 			],
 			"id": "BAM",
 			"source": "BAM",
-			"group": "supplement",
+			"parentSource": "SAiS",
+			"group": "setting",
 			"cover": {
 				"type": "internal",
 				"path": "covers/BAM.webp"
@@ -4348,23 +4428,6 @@
 				},
 				{
 					"name": "Credits"
-				}
-			]
-		},
-		{
-			"name": "Dungeon Master's Screen: Spelljammer",
-			"id": "ScreenSpelljammer",
-			"source": "ScreenSpelljammer",
-			"group": "screen",
-			"cover": {
-				"type": "internal",
-				"path": "covers/ScreenSpelljammer.webp"
-			},
-			"published": "2022-08-16",
-			"author": "Wizards RPG Team",
-			"contents": [
-				{
-					"name": "Screen"
 				}
 			]
 		},
@@ -4546,7 +4609,8 @@
 			],
 			"id": "MPP",
 			"source": "MPP",
-			"group": "supplement",
+			"parentSource": "PAitM",
+			"group": "setting",
 			"cover": {
 				"type": "internal",
 				"path": "covers/MPP.webp"
@@ -4602,7 +4666,8 @@
 			],
 			"id": "SatO",
 			"source": "SatO",
-			"group": "supplement",
+			"parentSource": "PAitM",
+			"group": "setting",
 			"cover": {
 				"type": "internal",
 				"path": "covers/SatO.webp"

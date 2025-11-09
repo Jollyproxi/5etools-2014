@@ -209,6 +209,7 @@ const PROPORDER_MONSTER = [
 	"token",
 	"tokenHref",
 	"tokenCredit",
+	"tokenCustom",
 	"soundClip",
 
 	...PROPS_FOUNDRY_DATA_INLINE,
@@ -518,6 +519,7 @@ const PROPORDER_BOOK = [
 
 	"id",
 	"source",
+	"parentSource",
 
 	"group",
 
@@ -1356,6 +1358,7 @@ const PROPORDER_VEHICLE = [
 	"token",
 	"tokenHref",
 	"tokenCredit",
+	"tokenCustom",
 
 	"hasToken",
 	"hasFluff",
@@ -1784,6 +1787,7 @@ const PROPORDER_OBJECT = [
 	"token",
 	"tokenHref",
 	"tokenCredit",
+	"tokenCustom",
 
 	"altArt",
 
@@ -2309,6 +2313,10 @@ const PROPORDER_ENCOUNTER = [
 	new ArrayKey("tables", {
 		order: [
 			"caption",
+
+			"captionPrefix",
+			"captionSuffix",
+
 			"minlvl",
 			"maxlvl",
 

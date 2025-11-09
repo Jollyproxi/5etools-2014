@@ -1123,8 +1123,6 @@ class ListPage {
 
 		this._pOnLoad_initVisibleItemsDisplay();
 
-		if (this._filterBox) this._filterBox.on(FILTER_BOX_EVNT_VALCHANGE, this.handleFilterChange.bind(this));
-
 		if (this._sublistManager) {
 			if (this._sublistManager.isSublistItemsCountable) {
 				this._bindAddButton();
@@ -1147,7 +1145,7 @@ class ListPage {
 
 		this._pOnLoad_bindMiscButtons();
 
-		this._pOnLoad_pBookView();
+		this._pOnLoad_pBookView().then(null);
 		this._pOnLoad_tableView();
 
 		Hist.setFnLoadHash(this.pDoLoadHash.bind(this));
@@ -1164,6 +1162,7 @@ class ListPage {
 
 		ListPage._checkShowAllExcluded(this._dataList, this._$pgContent);
 
+		if (this._filterBox) this._filterBox.on(FILTER_BOX_EVNT_VALCHANGE, this.handleFilterChange.bind(this));
 		this.handleFilterChange();
 
 		await this._pOnLoad_pPostLoad();
@@ -1172,8 +1171,8 @@ class ListPage {
 	}
 
 	_pOnLoad_findPageElements () {
-		this._$pgContent = $(`#pagecontent`);
-		this._$wrpTabs = $(`#stat-tabs`);
+		this._$pgContent = $(document.getElementById("pagecontent"));
+		this._$wrpTabs = $(document.getElementById("stat-tabs"));
 	}
 
 	async _pOnLoad_pInitSettingsManager () {
@@ -1184,14 +1183,14 @@ class ListPage {
 	}
 
 	async _pOnLoad_pInitPrimaryLists () {
-		const $iptSearch = $("#lst__search");
-		const $btnReset = $("#reset");
+		const iptSearch = e_(document.getElementById("lst__search"));
+		const btnReset = e_(document.getElementById("reset"));
 		this._list = this._initList({
-			$iptSearch,
-			$wrpList: $(`#list`),
-			$btnReset,
-			$btnClear: $(`#lst__search-glass`),
-			dispPageTagline: document.getElementById(`page__subtitle`),
+			iptSearch,
+			wrpList: e_(document.getElementById("list")),
+			btnReset,
+			btnClear: e_(document.getElementById("lst__search-glass")),
+			dispPageTagline: e_(document.getElementById(`page__subtitle`)),
 			isPreviewable: this._isPreviewable,
 			syntax: this._listSyntax.build(),
 			isBindFindHotkey: true,
@@ -1202,9 +1201,9 @@ class ListPage {
 		if (this._isPreviewable) this._doBindPreviewAllButton($(wrpBtnsSort).find(`[name="list-toggle-all-previews"]`));
 
 		this._filterBox = await this._pageFilter.pInitFilterBox({
-			$iptSearch,
-			$wrpFormTop: $(`#filter-search-group`),
-			$btnReset,
+			iptSearch,
+			wrpFormTop: e_(document.getElementById("filter-search-group")),
+			btnReset,
 		});
 	}
 
@@ -1218,7 +1217,7 @@ class ListPage {
 	}
 
 	_pOnLoad_bindMiscButtons () {
-		const $btnReset = $("#reset");
+		const $btnReset = $(document.getElementById("reset"));
 		// TODO(MODULES) refactor
 		import("./utils-brew/utils-brew-ui-manage.js")
 			.then(({ManageBrewUi}) => {
@@ -1226,8 +1225,8 @@ class ListPage {
 			});
 		this._renderListFeelingLucky({$btnReset});
 		this._renderListShowHide({
-			$wrpList: $(`#listcontainer`),
-			$wrpContent: $(`#contentwrapper`),
+			$wrpList: $(document.getElementById("listcontainer")),
+			$wrpContent: $(document.getElementById("contentwrapper")),
 			$btnReset,
 		});
 		if (this._hasAudio) Renderer.utils.bindPronounceButtons();
@@ -1453,7 +1452,7 @@ class ListPage {
 		});
 	}
 
-	_renderListFeelingLucky ({isCompact, $btnReset}) {
+	_renderListFeelingLucky ({isCompact, $btnReset, isScrollablePage = false}) {
 		const btnRoll = ee`<button class="ve-btn ve-btn-default ${isCompact ? "px-2" : ""}" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`;
 
 		btnRoll
@@ -1464,7 +1463,7 @@ class ListPage {
 					const list = allLists[rollX];
 					const rollY = RollerUtil.roll(list.visibleItems.length);
 					window.location.hash = e_(list.visibleItems[rollY].ele).find(`a`).attr("href");
-					list.visibleItems[rollY].ele.scrollIntoView();
+					if (!isScrollablePage) list.visibleItems[rollY].ele.scrollIntoView();
 				}
 			});
 
@@ -2359,7 +2358,7 @@ class ListPageTokenDisplay {
 		const wMax = Math.max(Math.floor(bcr.height) - 6, 110);
 
 		const imgLink = this._fnGetTokenUrl(ent);
-		const $img = $(`<img src="${imgLink}" class="stats__token" alt="Token Image: ${(ent.name || "").qq()}" ${ent.tokenCredit ? `title="Credit: ${ent.tokenCredit.qq()}"` : ""} loading="lazy">`)
+		const $img = $(`<img src="${imgLink}" class="stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`)
 			.css("max-width", wMax);
 		const $lnkToken = $$`<a href="${imgLink}" class="stats__wrp-token" target="_blank" rel="noopener noreferrer">${$img}</a>`
 			.appendTo(this._$dispToken);
@@ -2381,7 +2380,7 @@ class ListPageTokenDisplay {
 			if (!meta.$ele) {
 				const imgLink = this._fnGetTokenUrl(meta);
 				const displayName = Renderer.utils.getAltArtDisplayName(meta);
-				const $img = $(`<img src="${imgLink}" class="stats__token" alt="Token Image${displayName ? `: ${displayName.qq()}` : ""}}" ${meta.tokenCredit ? `title="Credit: ${meta.tokenCredit.qq()}"` : ""} loading="lazy">`)
+				const $img = $(`<img src="${imgLink}" class="stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent, {displayName})} loading="lazy">`)
 					.css("max-width", wMax)
 					.on("error", () => {
 						$img.attr("src", this.constructor._SRC_ERROR);
