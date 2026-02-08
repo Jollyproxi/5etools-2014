@@ -17,6 +17,10 @@
 				"source": "DMG",
 				"page": 150,
 				"srd": true,
+				"referenceSources": [
+					"ToA",
+					"CoA"
+				],
 				"tier": "minor",
 				"rarity": "uncommon",
 				"bonusWeapon": "+1",
@@ -42,6 +46,9 @@
 				"page": 152,
 				"srd": true,
 				"basicRules": true,
+				"referenceSources": [
+					"LMoP"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"bonusAc": "+1",
@@ -92,6 +99,18 @@
 				"page": 213,
 				"srd": true,
 				"basicRules": true,
+				"referenceSources": [
+					"LMoP",
+					"TftYP-DiT",
+					"GoS",
+					"DIP",
+					"NRH-ASS",
+					"DoSI",
+					"SjA",
+					"PaBTSO",
+					"ToFW",
+					"QftIS"
+				],
 				"tier": "major",
 				"rarity": "uncommon",
 				"bonusWeapon": "+1",
@@ -165,6 +184,10 @@
 				"page": 152,
 				"srd": true,
 				"basicRules": true,
+				"referenceSources": [
+					"CoS",
+					"TftYP-AtG"
+				],
 				"tier": "major",
 				"rarity": "very rare",
 				"bonusAc": "+2",
@@ -215,6 +238,10 @@
 				"page": 213,
 				"srd": true,
 				"basicRules": true,
+				"referenceSources": [
+					"BGDIA",
+					"GotSF"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"bonusWeapon": "+2",
@@ -1035,6 +1062,14 @@
 				"source": "DMG",
 				"page": 155,
 				"srd": true,
+				"referenceSources": [
+					"TftYP-THSoT",
+					"GoS",
+					"IDRotF",
+					"HoL",
+					"DSotDQ",
+					"QftIS"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"reqAttune": true,
@@ -1327,6 +1362,9 @@
 				"source": "DMG",
 				"page": 164,
 				"srd": true,
+				"referenceSources": [
+					"TftYP-ToH"
+				],
 				"tier": "major",
 				"rarity": "legendary",
 				"reqAttune": true,
@@ -1417,6 +1455,11 @@
 				"source": "DMG",
 				"page": 166,
 				"srd": true,
+				"referenceSources": [
+					"PotA",
+					"TftYP-AtG",
+					"DIP"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"bonusWeapon": "+1",
@@ -1470,6 +1513,9 @@
 						"source": "DSotDQ",
 						"page": 23
 					}
+				],
+				"referenceSources": [
+					"DSotDQ"
 				],
 				"rarity": "legendary",
 				"reqAttune": true,
@@ -1680,6 +1726,13 @@
 				"source": "DMG",
 				"page": 170,
 				"srd": true,
+				"referenceSources": [
+					"OotA",
+					"TftYP-ToH",
+					"ToA",
+					"WBtW",
+					"QftIS"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"reqAttune": true,
@@ -1772,6 +1825,9 @@
 				"source": "DMG",
 				"page": 171,
 				"srd": true,
+				"referenceSources": [
+					"WBtW"
+				],
 				"resist": [
 					"fire"
 				],
@@ -1838,6 +1894,9 @@
 				"source": "DMG",
 				"page": 172,
 				"srd": true,
+				"referenceSources": [
+					"SKT"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"bonusWeapon": "+1",
@@ -1953,6 +2012,9 @@
 				"source": "DMG",
 				"page": 174,
 				"srd": true,
+				"referenceSources": [
+					"CoA"
+				],
 				"tier": "major",
 				"rarity": "legendary",
 				"reqAttune": "by a paladin",
@@ -2288,6 +2350,10 @@
 				"source": "DMG",
 				"page": 179,
 				"srd": true,
+				"referenceSources": [
+					"CoS",
+					"WDMM"
+				],
 				"tier": "major",
 				"rarity": "legendary",
 				"reqAttune": true,
@@ -2336,6 +2402,10 @@
 				"namePrefix": "Mariner's ",
 				"source": "DMG",
 				"page": 181,
+				"referenceSources": [
+					"PotA",
+					"WDMM"
+				],
 				"tier": "minor",
 				"rarity": "uncommon",
 				"modifySpeed": {
@@ -2436,6 +2506,12 @@
 				"source": "DMG",
 				"page": 182,
 				"srd": true,
+				"referenceSources": [
+					"WDMM",
+					"IDRotF",
+					"KftGV",
+					"CoA"
+				],
 				"tier": "minor",
 				"rarity": "uncommon",
 				"strength": null,
@@ -2543,6 +2619,10 @@
 				"source": "DMG",
 				"page": 183,
 				"srd": true,
+				"referenceSources": [
+					"WDMM",
+					"CoA"
+				],
 				"tier": "major",
 				"rarity": "very rare",
 				"reqAttune": true,
@@ -3240,6 +3320,10 @@
 				"source": "DMG",
 				"page": 206,
 				"srd": true,
+				"referenceSources": [
+					"CoA",
+					"VEoR"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"reqAttune": true,
@@ -3303,6 +3387,9 @@
 				"source": "DMG",
 				"page": 206,
 				"srd": true,
+				"referenceSources": [
+					"WDMM"
+				],
 				"tier": "major",
 				"rarity": "very rare",
 				"reqAttune": true,
@@ -3455,6 +3542,9 @@
 				"source": "DMG",
 				"page": 209,
 				"srd": true,
+				"referenceSources": [
+					"CoA"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"entries": [
@@ -3481,6 +3571,9 @@
 				"source": "DMG",
 				"page": 209,
 				"srd": true,
+				"referenceSources": [
+					"LLK"
+				],
 				"tier": "major",
 				"rarity": "legendary",
 				"reqAttune": true,
@@ -3643,6 +3736,9 @@
 				"nameSuffix": " of Warning",
 				"source": "DMG",
 				"page": 213,
+				"referenceSources": [
+					"JttRC"
+				],
 				"tier": "major",
 				"rarity": "uncommon",
 				"reqAttune": true,
