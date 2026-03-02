@@ -1,0 +1,393 @@
+{
+	"_meta": {
+		"sources": [
+			{
+				"json": "MenzoboranzanColosseum",
+				"abbreviation": "MeCo",
+				"full": "Menzoboranzan Colosseum",
+				"version": "1.0",
+				"authors": [
+					"Jollyproxi & Co."
+				],
+				"convertedBy": [
+					"Jollyproxi"
+				],
+				"color": "ff0000"
+			}
+		]
+	},
+	"monster": [
+		{
+			"name": "Hugin",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"changling"
+				]
+			},
+			"source": "MenzoboranzanColosseum",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 24,
+					"from": [
+						"16 + 8 unarmored defense"
+					],
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "20d12 + 85",
+				"average": 215
+			},
+			"speed": {
+				"walk": 50,
+				"climb": 50,
+				"swim": {
+					"number": 50,
+					"condition": "walk on water"
+				}
+			},
+			"str": 14,
+			"dex": 22,
+			"con": 20,
+			"int": 18,
+			"wis": 14,
+			"cha": 26,
+			"passive": 18,
+			"cr": "20",
+			"shortName": true,
+			"senses": [
+				"darkvision 200 ft."
+			],
+			"senseTags": [
+				"SD"
+			],
+			"languages": [
+				"Common",
+				"Undercommon",
+				"Celestial",
+				"Elvish"
+			],
+			"languageTags": [
+				"C",
+				"U",
+				"CE",
+				"E"
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Rampage"
+			],
+			"save": {
+				"dex": "+12",
+				"cha": "+14",
+				"wis": "+8",
+				"int": "+10",
+				"con": "+11",
+				"str": "+8"
+			},
+			"skill": {
+				"acrobatics": "+18",
+				"athletics": "+8",
+				"deception": "+14",
+				"insight": "+8",
+				"perception": "+8",
+				"performance": "+20",
+				"persuasion": "+20",
+				"religion": "+8",
+				"animal handling": "+5",
+				"arcana": "+7",
+				"history": "+7",
+				"intimidation": "+11",
+				"investigation": "+7",
+				"medicine": "+5",
+				"nature": "+7",
+				"sleight of hand": "+9",
+				"stealth": "+9",
+				"survival": "+5"
+			},
+			"resist": [
+				"psychic",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"preNote": "Non-magical"
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"grappled",
+				"poisoned",
+				"restrained"
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Hugin can take three Actions unless he expends a ki point which doubles the nuber of Actions."
+					]
+				},
+				{
+					"name": "Enlarge",
+					"entries": [
+						"For 1 minute, the Hugin magically increases in size, along with anything it is wearing or carrying. While enlarged, the Hugin is Large, doubles its damage dice on Dexterity-based weapon attacks (included in the attacks), and makes Strength checks and Strength saving throws with advantage. If the Hugin lacks the room to become Large, it attains the maximum size possible in the space available."
+					]
+				},
+				{
+					"name": "Force Strike",
+					"entries": [
+						"{@atk mw} {@hit +12} to hit, reach 5 ft., one target. {@h}12 ({@damage 1d12 + 6}) force damage. If the target is a creature, it must succeed on a {@dc 22} or be {@condition stunned} until end of Hugin's next turn."
+					]
+				},
+				{
+					"name": "Quickend Healing",
+					"entries": [
+						"Hugin can spend 2 ki points and regains a number of hit points equal to {@damage 2d12+6}. "
+					]
+				},
+				{
+					"name": "Wholeness of Body",
+					"entries": [
+						"Hugin gains the ability to heal Himself of 60 Hit Point. He must finish a long rest before he can use this feature again."
+					]
+				}
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"trait": [
+				{
+					"name": "Ki Points",
+					"entries": [
+						"Hugin harnesses the mystic energy of ki and can spend these points to fuel various ki features. Hugin has 20 ki points and recharges them on a long rest."
+					]
+				},
+				{
+					"name": "Evasion",
+					"entries": [
+						"If Hugin is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, Hugin instead takes no damage if it succeeds on the saving throw, and only half damage if it fails."
+					]
+				},
+				{
+					"name": "Quivering Palm",
+					"entries": [
+						"Hugin gains the ability to set up lethal vibrations in someone's body. When he hits a creature with an unarmed strike, he can spend 3 ki points to start these imperceptible vibrations, which last for a number of days equal to your monk level. The vibrations are harmless unless he uses his action to end them. To do so, he and the target must be on the same plane of existence. When he uses this action, the creature must make a {@dc 22} Constitution saving throw. If it fails, it is reduced to 0 hit points. If it succeeds, it takes {@damage 10d10} necrotic damage."
+					]
+				},
+				{
+					"name": "Perfect Self",
+					"entries": [
+						"When he rolls for initiative and has no ki points remaining, he gains 4 ki points."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Deflect Missile",
+					"entries": [
+						"In response to being hit by a {@atk rw}, Hugin deflects the missile. The damage he takes from the attack is reduced by {@dice 2d10 + 20}. If the damage is reduced to 0, Hugin catches the missile if it's small enough to hold in one hand and Hugin has a hand free."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"bonus": [
+				{
+					"name": "Patient Defense",
+					"entries": [
+						"Hugin can spend 1 ki point to {@action Dodge} as a bonus action."
+					]
+				},
+				{
+					"name": "Step of the Wind",
+					"entries": [
+						"Hugin can spend 1 ki point to {@action Disengage} or {@action Dash} as a bonus action."
+					]
+				},
+				{
+					"name": "Inspiring self",
+					"entries": [
+						"Huging may use bardic inspiration on himself up to 8 times per long rest. The die is a {@damage d12} that can be added to any {@dice d20} roll."
+					]
+				}
+			],
+			"spellcasting": [
+				{
+					"name": "Cheer the crowd",
+					"headerEntries": [
+						"Hugin may use this action while cheering up the crowd"
+					],
+					"displayAs": "action",
+					"will": [
+						"{@spell Sanctuary|XPHB}"
+					],
+					"type": "spellcasting"
+				},
+				{
+					"name": "Showmanship",
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell Dancing Lights|XPHB}",
+								"{@spell Friends}",
+								"{@spell Green-Flame Blade|TCE} or fist",
+								"{@spell Thunderclap|XPHB}",
+								"{@spell Vicious Mockery|XPHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell Detect Magic|XPHB}",
+								"{@spell Dissonant Whispers|XPHB}",
+								"{@spell Tenser's Floating Disk|XPHB|floating disk}",
+								"{@spell Fog Cloud|XPHB}",
+								"{@spell Jump|XPHB}",
+								"{@spell Silent Image|XPHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell Darkness|XPHB}",
+								"{@spell Mirror Image|XPHB}",
+								"{@spell Misty Step|XPHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell Fear|XPHB}",
+								"{@spell Hypnotic Pattern|XPHB}",
+								"{@spell Major Image|XPHB}"
+							],
+							"slots": 3
+						},
+						"4": {
+							"spells": [
+								"{@spell Banishment}",
+								"{@spell Compulsion|XPHB}",
+								"{@spell Confusion|XPHB}",
+								"{@spell Control Water}",
+								"{@spell Dimension Door}",
+								"{@spell Polymorph|XPHB}"
+							],
+							"slots": 3
+						},
+						"5": {
+							"spells": [
+								"{@spell Banishing Smite}",
+								"{@spell Dominate Person|XPHB}",
+								"{@spell Mislead|XPHB}",
+								"{@spell Steel Wind Strike|XGE}",
+								"{@spell Rary's Telepathic Bond|XPHB|telepathic bond}"
+							],
+							"slots": 3
+						},
+						"6": {
+							"spells": [
+								"{@spell Investiture of Flame|XGE}",
+								"{@spell Mass Suggestion|XPHB}",
+								"{@spell Tenser's Transformation|XGE}",
+								"{@spell True Seeing|XPHB}"
+							],
+							"slots": 2
+						},
+						"7": {
+							"spells": [
+								"{@spell Plane Shift|XPHB}",
+								"{@spell Teleport}"
+							],
+							"slots": 1
+						},
+						"8": {
+							"spells": [
+								"{@spell Clone|XPHB}"
+							],
+							"slots": 1
+						}
+					},
+					"type": "spellcasting"
+				}
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"isNamedCreature": true,
+			"legendary": [
+				{
+					"name": "Into the Crowd",
+					"entries": [
+						"As a Legendary action Hugin may {@spell teleport} to a spot amid the crowd with a spotlight feigning to enjoy the show  and teleport back at the end of next turn."
+					]
+				},
+				{
+					"name": "Smoke Bomb",
+					"entries": [
+						"As a Legendary action Hugin may use {@spell misty step} by thowing a smoke bomb."
+					]
+				}
+			],
+			"environment": [
+				"underdark"
+			],
+			"isNpc": true,
+			"tokenHref": {
+				"type": "external",
+				"url": "https://i.postimg.cc/SRYbw1bT/cool-armor.jpg"
+			},
+			"fluff": {
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.postimg.cc/SRYbw1bT/cool-armor.jpg"
+						}
+					},
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.postimg.cc/Y0LBJDBy/fase-2.jpg"
+						}
+					}
+				]
+			},
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"B",
+				"F",
+				"O",
+				"T",
+				"Y"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"strength",
+				"wisdom"
+			]
+		}
+	]
+}
