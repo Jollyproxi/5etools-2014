@@ -274,10 +274,10 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 		},
 	) {
 		const stgRandom = this._getRenderedWrpRandomAndAdjust_getStgRandom({tiers})
-			.addClass("ve-mobile-lg__mb-2");
+			.vee.addClass("ve-mobile-lg__mb-2");
 		const stgAdjust = this._getRenderedWrpRandomAndAdjust_getAdjustMeta({tiers});
 
-		return ee`<div class="ve-flex-col">
+		return veT`<div class="ve-flex-col">
 			<div class="ve-flex-v-center ve-mobile-lg__flex-col ve-mobile-lg__flex-ai-start">
 				${stgRandom}
 
@@ -286,7 +286,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 				${stgAdjust}
 			</div>
 		</div>`
-			.hideVe();
+			.vee.hide();
 	}
 
 	_getRenderedWrpRandomAndAdjust_getStgRandom ({tiers}) {
@@ -310,8 +310,8 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			},
 		);
 
-		const btnGenerate = ee`<button class="ve-btn ve-btn-primary ve-h-34p" title="Generate Encounter"><span class="glyphicon glyphicon-play"></span></button>`
-			.onn("click", async () => {
+		const btnGenerate = veT`<button class="ve-btn ve-btn-primary ve-h-34p" title="Generate Encounter"><span class="glyphicon glyphicon-play"></span></button>`
+			.vee.onn("click", async () => {
 				if (
 					this._encounterShapesLookup.isCustomEncounterHash(this._state.shapeHashRandom)
 				) {
@@ -325,7 +325,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 				});
 			});
 
-		return ee`<div class="ve-flex-v-center ve-input-group ve-w-100">
+		return veT`<div class="ve-flex-v-center ve-input-group ve-w-100">
 			${selTier}
 			${selShapeType}
 			${btnGenerate}
@@ -335,8 +335,8 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 	_getRenderedWrpRandomAndAdjust_getBtnSendToFoundry () {
 		if (globalThis.IS_VTT || !ExtensionUtil.ACTIVE) return null;
 
-		return ee`<button title="Send to Foundry" class="no-print ve-btn ve-btn-md ve-btn-default ve-ml-2"><span class="glyphicon glyphicon-send"></span></button>`
-			.onn("click", async () => {
+		return veT`<button title="Send to Foundry" class="no-print ve-btn ve-btn-md ve-btn-default ve-ml-2"><span class="glyphicon glyphicon-send"></span></button>`
+			.vee.onn("click", async () => {
 				const encounterActorName = await InputUiUtil.pGetUserString({title: "Encounter Actor Name", isSkippable: true});
 
 				await ExtensionUtil.pDoSend({
@@ -363,16 +363,16 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			await this._pDoAdjustEncounter({tier: this._state.tierAdjust});
 		};
 
-		const btn = ee`<button class="ve-btn ve-btn-primary ecgen__btn-adjust"></button>`
-			.onn("click", async evt => {
+		const btn = veT`<button class="ve-btn ve-btn-primary ecgen__btn-adjust"></button>`
+			.vee.onn("click", async evt => {
 				evt.preventDefault();
 				await pSetTier();
 			});
 
 		this._addHookBase("tierAdjust", () => {
 			btn
-				.txt(getButtonText(this._state.tierAdjust))
-				.tooltip(getButtonTitle(this._state.tierAdjust));
+				.vee.txt(getButtonText(this._state.tierAdjust))
+				.vee.tooltip(getButtonTitle(this._state.tierAdjust));
 		})();
 
 		const menu = ContextUtil.getMenu(
@@ -386,12 +386,12 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 				)),
 		);
 
-		const dispCaret = ee`<span class="ve-caret"></span>`;
-		menu.on("open", () => dispCaret.addClass("ve-caret--up"));
-		menu.on("close", () => dispCaret.removeClass("ve-caret--up"));
+		const dispCaret = veT`<span class="ve-caret"></span>`;
+		menu.on("open", () => dispCaret.vee.addClass("ve-caret--up"));
+		menu.on("close", () => dispCaret.vee.removeClass("ve-caret--up"));
 
-		const btnMenu = ee`<button class="ve-btn ve-btn-primary ve-w-24p ve-px-0">${dispCaret}</button>`
-			.onn("click", evt => {
+		const btnMenu = veT`<button class="ve-btn ve-btn-primary ve-w-24p ve-px-0">${dispCaret}</button>`
+			.vee.onn("click", evt => {
 				if (menu.isOpen()) {
 					evt.preventDefault();
 					evt.stopPropagation();
@@ -408,7 +408,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 
 		const btnSendToFoundry = this._getRenderedWrpRandomAndAdjust_getBtnSendToFoundry();
 
-		return ee`<div class="ve-flex-v-center ve-relative ve-no-shrink">
+		return veT`<div class="ve-flex-v-center ve-relative ve-no-shrink">
 			<div class="ve-btn-group ve-flex-v-center">
 				${btn}
 				${btnMenu}
@@ -422,7 +422,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 	_getRenderedDispsTierMeta ({tiers}) {
 		const dispsLookup = Object.fromEntries(
 			tiers
-				.map(tier => [tier, ee`<div></div>`]),
+				.map(tier => [tier, veT`<div></div>`]),
 		);
 
 		const onHookPulseDeriverPartyMeta = ({partyMeta}) => {
@@ -433,8 +433,8 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			Object.entries(dispsLookup)
 				.forEach(([tier_, disp]) => {
 					disp
-						.toggleClass("ve-bold", tier === tier_)
-						.html(
+						.vee.toggleClass("ve-bold", tier === tier_)
+						.vee.html(
 							this._tierHtmlProvider.getTierHtml({
 								partyMeta,
 								tier: tier_,
