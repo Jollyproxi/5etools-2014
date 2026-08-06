@@ -119,12 +119,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light"
-				],
-				"weapons": [
-					"simple"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -139,6 +133,17 @@
 							],
 							"count": 2
 						}
+					}
+				],
+				"weapons": [
+					"simple"
+				],
+				"armor": [
+					"light"
+				],
+				"armorProficiencies": [
+					{
+						"light": true
 					}
 				]
 			},
@@ -200,11 +205,16 @@
 					"cha": 13
 				},
 				"proficienciesGained": {
+					"weapons": [
+						"simple"
+					],
 					"armor": [
 						"light"
 					],
-					"weapons": [
-						"simple"
+					"armorProficiencies": [
+						{
+							"light": true
+						}
 					]
 				}
 			},

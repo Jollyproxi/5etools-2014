@@ -47,14 +47,6 @@
 				5
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"shield"
-				],
-				"weapons": [
-					"simple"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -67,6 +59,21 @@
 							],
 							"count": 2
 						}
+					}
+				],
+				"weapons": [
+					"simple"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
 					}
 				]
 			},
@@ -138,6 +145,13 @@
 						"light",
 						"medium",
 						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
 					]
 				}
 			},

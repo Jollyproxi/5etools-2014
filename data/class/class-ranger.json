@@ -54,15 +54,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"shield"
-				],
-				"weapons": [
-					"simple",
-					"martial"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -78,6 +69,22 @@
 							],
 							"count": 3
 						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
 					}
 				]
 			},
@@ -135,11 +142,6 @@
 					"wis": 13
 				},
 				"proficienciesGained": {
-					"armor": [
-						"light",
-						"medium",
-						"shield"
-					],
 					"skills": [
 						{
 							"choose": {
@@ -160,6 +162,18 @@
 					"weapons": [
 						"simple",
 						"martial"
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
 					]
 				}
 			},
