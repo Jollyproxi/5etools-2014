@@ -219,7 +219,6 @@ export class ItemTag extends ConverterTaggerInitializable {
 		keyBlocklist: new Set([
 			...WALKER_CONVERTER_KEY_BLOCKLIST,
 			"packContents", // Avoid tagging item pack contents
-			"items", // Avoid tagging item group item lists
 		]),
 	});
 
@@ -238,6 +237,8 @@ export class ItemTag extends ConverterTaggerInitializable {
 	static _ITEM_NAMES_REGEX_TOOLS__CLASSIC = null;
 	static ITEM_NAMES_REGEX_OTHER__CLASSIC = null;
 	static _ITEM_NAMES_REGEX_EQUIPMENT__CLASSIC = null;
+	static _ITEM_NAMES_GEMSTONE__CLASSIC = {};
+	static _ITEM_NAMES_REGEX_GEMSTONE__CLASSIC = null;
 	static _ITEM_PROPERTY_REGEX__CLASSIC = null;
 
 	static async _pInit_classic ({standardItems, standardProperties}) {
@@ -249,6 +250,8 @@ export class ItemTag extends ConverterTaggerInitializable {
 			propItemNamesRegexTools: "_ITEM_NAMES_REGEX_TOOLS__CLASSIC",
 			propItemNamesRegexOther: "ITEM_NAMES_REGEX_OTHER__CLASSIC",
 			propItemNamesRegexEquipment: "_ITEM_NAMES_REGEX_EQUIPMENT__CLASSIC",
+			lookupItemNamesGemstone: this._ITEM_NAMES_GEMSTONE__CLASSIC,
+			propItemNamesRegexGemstone: "_ITEM_NAMES_REGEX_GEMSTONE__CLASSIC",
 			propItemPropertyNamesRegex: "_ITEM_PROPERTY_REGEX__CLASSIC",
 			srcPhb: Parser.SRC_PHB,
 		});
@@ -280,6 +283,8 @@ export class ItemTag extends ConverterTaggerInitializable {
 			propItemNamesRegexOther,
 			propItemNamesRegexEquipment,
 			propItemNamesRegexStrict,
+			lookupItemNamesGemstone,
+			propItemNamesRegexGemstone,
 			propItemPropertyNamesRegex,
 			srcPhb,
 		},
@@ -341,6 +346,21 @@ export class ItemTag extends ConverterTaggerInitializable {
 		}
 		// endregion
 
+		// region Gemstones
+		const gemstones = standardItems
+			.filter(it => it.type && DataUtil.itemType.unpackUid(it.type).abbreviation === Parser.ITM_TYP_ABV__TREASURE_GEMSTONE);
+		const gemstoneNames = gemstones
+			.flatMap(it => {
+				const namePlural = it.name.toPlural();
+				lookupItemNamesGemstone[it.name.toLowerCase()] = {name: it.name, source: it.source, valueGp: it.value / 100, isPlural: false};
+				lookupItemNamesGemstone[namePlural.toLowerCase()] = {name: it.name, source: it.source, valueGp: it.value / 100, isPlural: true};
+				return [it.name, namePlural];
+			})
+			.sort((nameA, nameB) => nameB.length - nameA.length || SortUtil.ascSortLower(nameA, nameB));
+
+		if (gemstoneNames.length) this[propItemNamesRegexGemstone] = new RegExp(`\\b(?<itemName>${gemstoneNames.map(it => it.escapeRegexp()).join("|")})\\b(?: (?<itemSuffix>gemstones?|gems?|stones?|crystals?))?(?=(?: \\((?:worth [^.!?]*?)?(?<valueParens>[\\d,]+)\\+? gp|[^.!?]*?\\bworth\\b[^.!?]*?(?<value>[\\d,]+)\\+? gp))`, "gi");
+		// endregion
+
 		// region Item properties
 		standardProperties.forEach(ent => {
 			const name = Renderer.item.getPropertyName(ent);
@@ -358,7 +378,9 @@ export class ItemTag extends ConverterTaggerInitializable {
 	 * @param {"classic" | null} styleHint
 	 */
 	static _tryRun (ent, {styleHint = null} = {}) {
-		return this._WALKER.walk(
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		const entTagged = this._WALKER.walk(
 			ent,
 			{
 				string: (str) => {
@@ -393,6 +415,28 @@ export class ItemTag extends ConverterTaggerInitializable {
 				},
 			},
 		);
+
+		return this._WALKER.walk(
+			entTagged,
+			{
+				string: (str) => {
+					const ptrStack = {_: ""};
+
+					TaggerUtils.walkerStringHandler(
+						["@item"],
+						ptrStack,
+						0,
+						0,
+						str,
+						{
+							fnTag: this._fnTag_classic_gemstones.bind(this),
+						},
+					);
+
+					return ptrStack._;
+				},
+			},
+		);
 	}
 
 	static _fnTag_classic (strMod) {
@@ -413,6 +457,33 @@ export class ItemTag extends ConverterTaggerInitializable {
 		}
 
 		return strMod;
+	}
+
+	static _fnTag_gemstones ({strMod, itemNamesRegex, itemNames}) {
+		if (itemNamesRegex == null) return strMod;
+
+		return strMod
+			.replace(itemNamesRegex, (...m) => {
+				const {itemName, valueParens, value} = m.at(-1);
+
+				const itemMeta = itemNames[itemName.toLowerCase()];
+				const valueGp = Number((valueParens || value).replace(/,/g, ""));
+				if (valueGp !== itemMeta.valueGp) return m[0];
+
+				const ptUid = m[0].toLowerCase() === itemMeta.name.toLowerCase()
+					? DataUtil.proxy.getUidPacked("item", {name: m[0], source: itemMeta.source}, "item", {isMaintainCase: true})
+					: DataUtil.proxy.getUidPacked("item", {name: itemMeta.name, source: itemMeta.source}, "item", {isMaintainCase: true, displayName: m[0]});
+
+				return `{@item ${ptUid}}`;
+			});
+	}
+
+	static _fnTag_classic_gemstones (strMod) {
+		return this._fnTag_gemstones({
+			strMod,
+			itemNamesRegex: this._ITEM_NAMES_REGEX_GEMSTONE__CLASSIC,
+			itemNames: this._ITEM_NAMES_GEMSTONE__CLASSIC,
+		});
 	}
 
 	static _fnTag_classic_properties (strMod) {
