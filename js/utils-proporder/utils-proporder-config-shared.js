@@ -101,6 +101,7 @@ export const PROPORDER_FOUNDRY_EFFECTS = new ArrayKey("effects", {
 		"description",
 		"descriptionEntries",
 		"img",
+		"showIcon",
 		"advice",
 	],
 });
