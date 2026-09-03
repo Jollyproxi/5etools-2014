@@ -1862,12 +1862,12 @@ globalThis.Renderer = class {
 	}
 
 	_renderStatblock (entry, textStack, meta, options) {
-		const page = entry.prop || Renderer.tag.getPage(entry.tag);
+		const prop = entry.prop || Parser.getTagProps(entry.tag)[0];
+		const page = entry.prop || Renderer.tag.getPage(entry.tag, {isHover: true});
 		const source = Parser.getTagSource(entry.tag, entry.source);
 		const hash = entry.hash || (UrlUtil.URL_TO_HASH_BUILDER[page] ? UrlUtil.URL_TO_HASH_BUILDER[page]({...entry, source}) : null);
 		const tag = entry.tag || Parser.getPropTag(entry.prop);
 
-		const prop = entry.prop || Parser.getTagProps(entry.tag)[0];
 		const uid = prop ? DataUtil.proxy.getUid(prop, {...entry, source}, {isMaintainCase: true}) : "unknown|unknown";
 		const asTag = tag ? `{@${tag} ${uid}${entry.displayName ? `|${entry.displayName}` : ""}}` : null;
 
@@ -5549,6 +5549,7 @@ Renderer.tag = class {
 		tagName;
 		defaultSource = null;
 		page = null;
+		pageHover = null;
 		isStandalone = false;
 
 		get tag () { return `@${this.tagName}`; }
@@ -6267,6 +6268,7 @@ Renderer.tag = class {
 		tagName = "subclass";
 		defaultSource = Parser.SRC_PHB;
 		page = UrlUtil.PG_CLASSES;
+		pageHover = "subclass";
 	};
 
 	static _TagPipedDisplayTextSixth = class extends this._TagBaseAt {
@@ -6521,8 +6523,9 @@ Renderer.tag = class {
 		return out;
 	}
 
-	static getPage (tag) {
+	static getPage (tag, {isHover = false} = {}) {
 		const tagInfo = this.TAG_LOOKUP[tag];
+		if (isHover && tagInfo?.pageHover) return tagInfo.pageHover;
 		return tagInfo?.page;
 	}
 };
@@ -10682,7 +10685,7 @@ Renderer.monster = class {
 				mon.alignment ? `${mon.alignmentPrefix ? renderer.render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : "",
 			]
 				.filter(Boolean)
-				.join(", "),
+				.join(typeObj.asText.includes(",") ? "; " : ", "),
 		]
 			.filter(Boolean)
 			.join(" ");
