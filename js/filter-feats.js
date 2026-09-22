@@ -212,25 +212,25 @@ class ModalFilterFeats extends ModalFilterBase {
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;
 
-		const listItem = new ListItem(
-			ftI,
-			eleRow,
-			feat.name,
-			{
+		const listItem = new ListItem({
+			id: ftI,
+			ele: eleRow,
+			name: feat.name,
+			values: {
 				source,
 				sourceJson: feat.source,
 				...ListItem.getCommonValues(feat),
 				ability: feat._slAbility,
 				prerequisite: feat._slPrereq,
 			},
-			{
+			data: {
 				hash,
 				page: feat.page,
 				ability: feat._srtAbility,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 				btnShowHidePreview,
 			},
-		);
+		});
 
 		this._previewButtonHandler.bindPreviewButton({entity: feat, listItem, btnShowHidePreview});
 

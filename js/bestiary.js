@@ -170,17 +170,18 @@ class BestiarySublistManager extends SublistManager {
 			return {stg, ipt, comp};
 		})();
 
-		const listItem = new ListItem(
-			hash,
-			null,
+		let eleListItem;
+		const listItem = new ListItem({
+			id: hash,
+			fnGetEle: () => eleListItem,
 			name,
-			{
+			values: {
 				source: Parser.sourceJsonToAbv(mon.source),
 				type,
 				cr,
 				...ListItem.getCommonValues(mon),
 			},
-			{
+			data: {
 				hash,
 				page: mon.page,
 				count,
@@ -196,12 +197,12 @@ class BestiarySublistManager extends SublistManager {
 				),
 				mdRow: [...cellsText, ({listItem}) => listItem.data.count],
 			},
-		);
+		});
 
 		const sublistButtonsMeta = this._encounterBuilder.getSublistButtonsMeta(listItem);
 		listItem.data.fnsUpdate.push(sublistButtonsMeta.fnUpdate);
 
-		listItem.ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col ve-lst__row--bestiary-sublist">
+		eleListItem = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col ve-lst__row--bestiary-sublist">
 			<a href="#${hash}" draggable="false" class="best-ecgen__hidden ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText, templates: this.constructor._ROW_TEMPLATE.slice(0, 3)})}
 				${eleCount1}
@@ -510,22 +511,22 @@ class BestiaryPage extends ListPageMultiSource {
 			],
 		});
 
-		const listItem = new ListItem(
-			mI,
-			eleLi,
-			mon.name,
-			{
+		const listItem = new ListItem({
+			id: mI,
+			ele: eleLi,
+			name: mon.name,
+			values: {
 				source,
 				type,
 				cr,
 				...ListItem.getCommonValues(mon),
 			},
-			{
+			data: {
 				hash,
 				page: mon.page,
 				isExcluded,
 			},
-		);
+		});
 
 		return listItem;
 	}
@@ -686,7 +687,7 @@ class BestiaryPage extends ListPageMultiSource {
 	}
 
 	_handleBestiaryLiClick (evt, listItem) {
-		if (this._encounterBuilder.isActive()) Renderer.hover.doPopoutCurPage(evt, this._dataList[listItem.ix]);
+		if (this._encounterBuilder.isActive()) Renderer.hover.doPopoutCurPage(evt, this._dataList[listItem.getId()]);
 		else this._list.doSelect(listItem, evt);
 	}
 
@@ -849,7 +850,7 @@ class BestiaryPage extends ListPageMultiSource {
 		const selSummonSpellLevel = Renderer.monster.getSelSummonSpellLevel(mon);
 		if (selSummonSpellLevel) {
 			selSummonSpellLevel
-				.vee.onChange(evt => {
+				.vee.onn("change", evt => {
 					evt.stopPropagation();
 					const scaleTo = Number(selSummonSpellLevel.vee.val());
 					if (!~scaleTo) Hist.setSubhash(VeCt.HASH_SCALED_SPELL_SUMMON, null);
@@ -861,7 +862,7 @@ class BestiaryPage extends ListPageMultiSource {
 		const selSummonClassLevel = Renderer.monster.getSelSummonClassLevel(mon);
 		if (selSummonClassLevel) {
 			selSummonClassLevel
-				.vee.onChange(evt => {
+				.vee.onn("change", evt => {
 					evt.stopPropagation();
 					const scaleTo = Number(selSummonClassLevel.vee.val());
 					if (!~scaleTo) Hist.setSubhash(VeCt.HASH_SCALED_CLASS_SUMMON, null);
@@ -978,7 +979,7 @@ class BestiaryPage extends ListPageMultiSource {
 	_getEncounterBuilderCreatures () {
 		// Note that this intentionally provides only creatures visible in search results
 		return this._list.visibleItems
-			.map(li => this._dataList[li.ix]);
+			.map(li => this._dataList[li.getId()]);
 	}
 }
 
