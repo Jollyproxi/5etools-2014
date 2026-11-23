@@ -3296,5 +3296,15 @@
 		"ver": "1.221.7",
 		"date": "2026-11-17",
 		"txt": "- Added \"Copy as Markdown\" button to list page kebab menu\n- Added \"Copy Source Data\"/\"Download Source Data\" buttons to list page kebab menu\n- Added \"Food\"/\"Drink\" Miscellaneous filters to Items page\n- (Brew) Added rudimentary homebrew file validation/display to Renderer Demo\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.221.8",
+		"date": "2026-11-19",
+		"txt": "- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.221.9",
+		"date": "2026-11-23",
+		"txt": "- Fixed Adventure/Book pages navigating to wrong search result in full-text mode\n- (Brew) Added support for non-standard creature lair types\n- (Fixed typos/added tags)"
 	}
 ]
